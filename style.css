@@ -1,0 +1,98 @@
+*{
+    border-style: border-box;
+}
+
+body{
+    background-color: #4444;
+}
+.content{
+    width: 375px;
+    height: 670px;
+}
+
+.chat{
+    background-color: #E5E5E5;
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.menu{
+    background-color: #fff;
+    width: 100%;
+    height: 80px;
+}
+
+
+.topo{
+    width: 375px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.topo img{
+    width: 75px;
+    height: 53px;
+    
+    margin: 0 22px;
+}
+
+.topo ion-icon{
+    font-size: 50px;
+
+    margin: 0 22px;
+}
+
+.enviar-mensagem{    
+    width: 375px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.enviar-mensagem ion-icon{
+    font-size: 26px;
+    margin: 0 22px;
+}
+
+input{
+    width: 300px;
+    height: 75%;
+    
+    margin: 0 22px;
+    border: none;
+}
+
+
+.content-options{
+    background-color: #111111;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+.menu-opcoes{
+    
+    background-color: #E5E5E5;
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+
+.escondido {
+    display: none;
+}
