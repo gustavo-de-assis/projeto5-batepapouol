@@ -12,50 +12,73 @@
 </head>
 <body>
     <div class="content">
-        <div class="content-options escondido">
+        <div class="submenu escondido">
+            <div class="content-options" onclick="fechaMenu()">
+            </div>
             <div class="menu-opcoes">
                 <div class="opcoes">
+                    
                     <div class="titulo">
                         <h1>Escolha um contato<br> 
                             para enviar mensagem:</h1>
                     </div>
+                    
                     <div class="contato todos"> 
                         <ion-icon name="people"></ion-icon>
-                        <p>Todos</p>
-                        <ion-icon name="checkmark-sharp"></ion-icon>
+                        <div>
+                            <p>Todos</p>
+                            <ion-icon name="checkmark-sharp"></ion-icon>
+                        </div>
                     </div>
+                
                     <div class="contato c1">
                         <ion-icon name="person-circle"></ion-icon>
-                        <p>Contato 1</p>
-                        <ion-icon name="checkmark-sharp"></ion-icon>
+                        <div>
+                            <p>Contato 1</p>
+                            <ion-icon class="escondido" name="checkmark-sharp"></ion-icon>
+                        </div>
                     </div>
+                    
                     <div class="contato c2">
                         <ion-icon name="person-circle"></ion-icon>
-                        <p>Contato 2</p>
-                        <ion-icon name="checkmark-sharp"></ion-icon>
+                        <div>
+                            <p>Contato 2</p>
+                            <ion-icon class="escondido" name="checkmark-sharp"></ion-icon>
+                        </div>
                     </div>
+
                 </div>
                 <div class="visibilidade">
+                    
                     <div class="titulo">
                         <h1>Escolha a visibilidade</h1>
                     </div>
-                    <div class="publico">
+                    
+                    <div class="status">
                         <ion-icon name="lock-open"></ion-icon>
-                        <p>Público</p>
-                        <ion-icon name="checkmark-sharp"></ion-icon>
+                        <div>
+                            <p>Público</p>
+                            <ion-icon name="checkmark-sharp"></ion-icon>
+                        </div>
                     </div>
-                    <div class="reservadamente">
+
+                    <div class="status">
+                        
                         <ion-icon name="lock-closed"></ion-icon>
-                        <p>Reservadamente</p>
-                        <ion-icon name="checkmark-sharp"></ion-icon>
+                        <div>
+                            <p>Reservadamente</p>
+                            <ion-icon class="escondido" name="checkmark-sharp"></ion-icon>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="chat">
             <div class="menu topo">
                 <img src="./img/menu.png" />
-                <ion-icon name="people"></ion-icon>
+                <ion-icon onclick="abreMenu()" name="people"></ion-icon>
             </div>
             <div class="menu enviar-mensagem">
                 <input type="text" placeholder="Escreva aqui..." />
