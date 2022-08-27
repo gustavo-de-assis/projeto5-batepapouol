@@ -1,9 +1,20 @@
 let conversa = [];
 let mensagem = "";
 
-const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-promessa.then(sucesso);
-promessa.catch(trataErrro);
+let promessaMsg;
+
+setInterval(requisitaMsg, 1000, promessaMsg);
+
+promessaMsg.then(sucesso);
+
+promessaParticipantes.catch(trataErrro)
+//promessaConexao.catch(trataErrro)
+promessaMsg.catch(trataErrro);
+
+function requisitaMsg(a){
+    a = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    a.then(sucesso);
+}
 
 function sucesso(resposta){
     /* console.log(`Recebeu resposta do servidor! code ${resposta.status}`) */
@@ -35,18 +46,24 @@ function enviarComEnter(tecla){
 }
 
 function enviaMensagem(button){
+    
+    
     mensagem = button.previousElementSibling.value;
+   
     conversa.push(mensagem);
     renderizaConversa();
-    console.log(conversa);
 }
 
 function renderizaConversa(){
-    const elemento = document.querySelector(".msg-box");
+    const elemento = document.querySelector(".msg-list");
     elemento.innerHTML = '';
     for(let i= 0; i < conversa.length ; i++){
         elemento.innerHTML += `<li> (${conversa[i].time}) <strong>${conversa[i].from}</strong>
          para <strong>${conversa[i].to}</strong>: 
          ${conversa[i].text}</li>`;
-    }
+        }
+    
+    elemento.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"
+});
+
 }
