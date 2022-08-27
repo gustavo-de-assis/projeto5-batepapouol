@@ -1,6 +1,20 @@
 let conversa = [];
 let mensagem = "";
 
+const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
+promessa.then(sucesso);
+promessa.catch(trataErrro);
+
+function sucesso(resposta){
+    console.log(`Recebeu resposta do servidor! code ${resposta.status}`)
+}
+
+function trataErrro(erro){
+    const codErro = erro.response.status;
+    window.location.assign(`https://http.dog/${codErro}.jpg`);
+}
+
+
 function abreMenu(){
     const element = document.querySelector(".submenu");
     element.classList.remove("escondido");
