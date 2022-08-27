@@ -80,14 +80,17 @@
                 <img src="./img/menu.png" />
                 <ion-icon onclick="abreMenu()" name="people"></ion-icon>
             </div>
+            <ul class="msg-box">
+
+            </ul>
             <div class="menu enviar-mensagem">
-                <input type="text" placeholder="Escreva aqui..." />
-                <ion-icon name="paper-plane-outline"></ion-icon>
+                <input type="text" placeholder="Escreva aqui..." onkeydown="enviarComEnter(this)"/>
+                <ion-icon name="paper-plane-outline" onclick="enviaMensagem(this)"></ion-icon>
             </div>
         </div>
     </div>
 
-    <script src="./script.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

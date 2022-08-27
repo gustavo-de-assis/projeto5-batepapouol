@@ -35,7 +35,7 @@ body{
     top: 0;
     left: 116px;
     z-index: 1;
-
+    
     
 }
 .opcoes{
@@ -146,6 +146,10 @@ body{
     margin: 0 22px;
 }
 
+.msg-box{
+    
+}
+
 .enviar-mensagem{
     
     width: 375px;
@@ -166,7 +170,7 @@ body{
 
 input{
     width: 300px;
-    height: 100%;
+    height: 75%;
     
     margin: 0 22px;
     border: none;
