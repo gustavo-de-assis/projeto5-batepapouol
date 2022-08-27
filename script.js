@@ -1,5 +1,14 @@
 let conversa = [];
 let mensagem = "";
+let nome = {
+    name: ''
+}
+
+nome.name = prompt("Qual seu nome?");
+
+const entraNaSala = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome);
+
+entraNaSala.catch(trataErrro);
 
 let promessaMsg;
 
