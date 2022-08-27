@@ -1,8 +1,15 @@
 let conversa = [];
-let mensagem = "";
+
 let nome = {
     name: ''
 }
+
+let mensagem = {
+	from: "",
+	to: "Todos",
+	text: "",
+	type: "message" // ou "private_message" para o bônus
+};
 
 nome.name = prompt("Qual seu nome?");
 
@@ -55,11 +62,10 @@ function enviarComEnter(tecla){
 }
 
 function enviaMensagem(button){
-    
-    
-    mensagem = button.previousElementSibling.value;
+    mensagem.from = nome.name;
+    mensagem.text = button.previousElementSibling.value;
    
-    conversa.push(mensagem);
+    const enviar = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem);
     renderizaConversa();
 }
 
