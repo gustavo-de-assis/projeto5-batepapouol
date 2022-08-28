@@ -168,7 +168,7 @@ body{
 li{
 
     background-color: #FFFFFF;
-    height: 40px;
+    min-height: 40px;
     
     word-break: break-word;
 
@@ -182,6 +182,10 @@ li{
 
 .status{
     background-color: #dcdcdc;
+}
+
+.private{
+    background-color: indianred;
 }
 
 .enviar-mensagem{

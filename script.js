@@ -28,9 +28,18 @@ function enviarPara(element){
     desmarcar.classList.toggle('destinatario');
 
     element.classList.toggle('destinatario');
-    mensagem.to = `${element.querySelector('p').innerHTML}`
-    console.log(mensagem.to);
+    mensagem.to = `${element.querySelector('p').innerHTML}`;
+}
 
+function restricaoMsg(element){
+    if(mensagem.to !== 'Todos'){
+        if(element.classList.contains('tipo2')){
+            mensagem.type = 'private_message';
+        }
+    }
+    else{
+        mensagem.type = 'message';
+    }
 }
 
 setInterval(requisitaMsg, 2000, promessaMsg);
@@ -127,14 +136,25 @@ function renderizaConversa(){
     elemento.innerHTML = '';
     for(let i= 0; i < conversa.length ; i++){
         if (conversa[i].type === 'status'){
-        elemento.innerHTML += `<li class ='status'> (${conversa[i].time}) <strong>${conversa[i].from}</strong>
-         para <strong>${conversa[i].to}</strong>: 
-         ${conversa[i].text}</li>`;
+        
+            elemento.innerHTML += `<li class ='status'> (${conversa[i].time}) <strong>${conversa[i].from}</strong>
+            para <strong>${conversa[i].to}</strong>: 
+            ${conversa[i].text}</li>`;
+        
+        }else if (conversa[i].type === 'private_message'){
+        
+            elemento.innerHTML += `<li class ='private'>(${conversa[i].time}) <strong>${conversa[i].from}</strong>
+            reservadamente para <strong>${conversa[i].to}</strong>: 
+            ${conversa[i].text}</li>`;
+        
         }else{
-        elemento.innerHTML += `<li>(${conversa[i].time}) <strong>${conversa[i].from}</strong>
-         para <strong>${conversa[i].to}</strong>: 
-         ${conversa[i].text}</li>`;
+        
+            elemento.innerHTML += `<li>(${conversa[i].time}) <strong>${conversa[i].from}</strong>
+            para <strong>${conversa[i].to}</strong>: 
+            ${conversa[i].text}</li>`;
+        
         }
+        
     }
     elemento.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"
 });
