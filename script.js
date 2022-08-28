@@ -1,4 +1,5 @@
 let conversa = [];
+let contatos = [];
 
 let nome = {
     name: ''
@@ -13,13 +14,17 @@ let mensagem = {
 
 nome.name = prompt("Qual seu nome?");
 
+
 const entraNaSala = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome);
 
 entraNaSala.catch(trataErrro);
 
 let promessaMsg;
 
+let participantes;
+
 setInterval(requisitaMsg, 2000, promessaMsg);
+setInterval(requisitaPcp, 2000, participantes);
 setInterval(statusParticipante, 4000, nome);
 
 function requisitaMsg(a){
@@ -28,11 +33,21 @@ function requisitaMsg(a){
     a.catch(trataErrro);
 }
 
+function requisitaPcp(a){
+    a = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
+    a.then(sucessoContatos);
+    a.catch(trataErrro);
+}
+
 function sucesso(resposta){
     /* console.log(`Recebeu resposta do servidor! code ${resposta.status}`) */
-    
     conversa = resposta.data;
     renderizaConversa();
+}
+
+function sucessoContatos (resposta){
+    contatos = resposta.data;
+    menuParticipantes();
 }
 
 function trataErrro(erro){
@@ -44,7 +59,31 @@ function statusParticipante(participante){
     estaOnline.catch(trataErrro);
 }
 
+function menuParticipantes(){
+    const elemento = document.querySelector(".opcoes");
+    elemento.innerHTML = `<div class="titulo">
+    <h1>Escolha um contato<br> 
+        para enviar mensagem:</h1>
+    </div>
 
+    <div class="contato todos"> 
+        <ion-icon name="people"></ion-icon>
+        <div>
+            <p>Todos</p>
+            <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+    </div>`;
+
+    for(let i= 0; i < contatos.length ; i++){
+    elemento.innerHTML += `<div class="contato"> 
+        <ion-icon name="people"></ion-icon>
+        <div>
+            <p>${contatos[i].name}</p>
+            <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+    </div>`;
+    }
+}
 
 function abreMenu(){
     const element = document.querySelector(".submenu");
