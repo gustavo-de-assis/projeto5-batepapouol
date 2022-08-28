@@ -19,22 +19,18 @@ entraNaSala.catch(trataErrro);
 
 let promessaMsg;
 
-setInterval(requisitaMsg, 1000, promessaMsg);
-
-promessaMsg.then(sucesso);
-
-promessaParticipantes.catch(trataErrro)
-//promessaConexao.catch(trataErrro)
-promessaMsg.catch(trataErrro);
+setInterval(requisitaMsg, 2000, promessaMsg);
+setInterval(statusParticipante, 4000, nome);
 
 function requisitaMsg(a){
     a = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     a.then(sucesso);
+    a.catch(trataErrro);
 }
 
 function sucesso(resposta){
     /* console.log(`Recebeu resposta do servidor! code ${resposta.status}`) */
-
+    
     conversa = resposta.data;
     renderizaConversa();
 }
@@ -43,6 +39,11 @@ function trataErrro(erro){
     const codErro = erro.response.status;
     window.location.assign(`https://http.dog/${codErro}.jpg`);
 }
+function statusParticipante(participante){
+    const estaOnline = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nome);
+    estaOnline.catch(trataErrro);
+}
+
 
 
 function abreMenu(){
@@ -64,7 +65,10 @@ function enviarComEnter(tecla){
 function enviaMensagem(button){
     mensagem.from = nome.name;
     mensagem.text = button.previousElementSibling.value;
-   
+    if(!mensagem.text){
+        return;
+    }
+    button.previousElementSibling.value = '';
     const enviar = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem);
     renderizaConversa();
 }
@@ -73,11 +77,16 @@ function renderizaConversa(){
     const elemento = document.querySelector(".msg-list");
     elemento.innerHTML = '';
     for(let i= 0; i < conversa.length ; i++){
-        elemento.innerHTML += `<li> (${conversa[i].time}) <strong>${conversa[i].from}</strong>
+        if (conversa[i].type === 'status'){
+        elemento.innerHTML += `<li class ='status'> (${conversa[i].time}) <strong>${conversa[i].from}</strong>
+         para <strong>${conversa[i].to}</strong>: 
+         ${conversa[i].text}</li>`;
+        }else{
+        elemento.innerHTML += `<li>(${conversa[i].time}) <strong>${conversa[i].from}</strong>
          para <strong>${conversa[i].to}</strong>: 
          ${conversa[i].text}</li>`;
         }
-    
+    }
     elemento.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"
 });
 

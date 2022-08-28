@@ -157,14 +157,16 @@ body{
 }
 
 .msg-box{
-    height: 500px;
+    height: 400px;
     margin-top: 80px;
 
     overflow: hidden;
     position: absolute;
 }
+
 li{
-    background-color: #fff;
+
+    background-color: #FFFFFF;
     height: 40px;
     
     word-break: break-word;
@@ -173,12 +175,12 @@ li{
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     
-    margin: 3px 0;
+    margin: 5px 0;
     padding: 0 9px;
 }
-/*parei aqui, bug da cor?*/
-li .entra,li .sai{
-    background-color: red;
+
+.status{
+    background-color: #dcdcdc;
 }
 
 .enviar-mensagem{
