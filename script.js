@@ -23,6 +23,16 @@ let promessaMsg;
 
 let participantes;
 
+function enviarPara(element){
+    const desmarcar = document.querySelector('.destinatario');
+    desmarcar.classList.toggle('destinatario');
+
+    element.classList.toggle('destinatario');
+    mensagem.to = `${element.querySelector('p').innerHTML}`
+    console.log(mensagem.to);
+
+}
+
 setInterval(requisitaMsg, 2000, promessaMsg);
 setInterval(requisitaPcp, 2000, participantes);
 setInterval(statusParticipante, 4000, nome);
@@ -66,7 +76,7 @@ function menuParticipantes(){
         para enviar mensagem:</h1>
     </div>
 
-    <div class="contato todos"> 
+    <div class="contato todos destinatario" onclick='enviarPara(this)'> 
         <ion-icon name="people"></ion-icon>
         <div>
             <p>Todos</p>
@@ -75,7 +85,7 @@ function menuParticipantes(){
     </div>`;
 
     for(let i= 0; i < contatos.length ; i++){
-    elemento.innerHTML += `<div class="contato"> 
+    elemento.innerHTML += `<div class="contato" onclick='enviarPara(this)'> 
         <ion-icon name="people"></ion-icon>
         <div>
             <p>${contatos[i].name}</p>
